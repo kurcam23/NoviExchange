@@ -2,11 +2,16 @@ using NoviExchange.Application;
 using NoviExchange.Domain.Interfaces;
 using NoviExchange.EcbClient;
 using NoviExchange.EcbClient.Options;
+using NoviExchange.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<NoviExchangeDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.Configure<EcbClientOptions>(builder.Configuration.GetSection("EcbClient"));
 
