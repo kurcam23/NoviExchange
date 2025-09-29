@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NoviExchange.Domain.Interfaces;
+using NoviExchange.Application.Interfaces;
 
 namespace NoviExchange.Api.Controllers
 {

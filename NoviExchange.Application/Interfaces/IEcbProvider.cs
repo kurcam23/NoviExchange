@@ -1,6 +1,6 @@
 ﻿using NoviExchange.Domain.Models;
 
-namespace NoviExchange.Domain.Interfaces
+namespace NoviExchange.Application.Interfaces
 {
     public interface IEcbProvider
     {

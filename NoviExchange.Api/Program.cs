@@ -1,5 +1,5 @@
 using NoviExchange.Application;
-using NoviExchange.Domain.Interfaces;
+using NoviExchange.Application.Interfaces;
 using NoviExchange.EcbClient;
 using NoviExchange.EcbClient.Options;
 using NoviExchange.Infrastructure;

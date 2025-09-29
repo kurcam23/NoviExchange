@@ -1,4 +1,4 @@
-﻿using NoviExchange.Domain.Interfaces;
+﻿using NoviExchange.Application.Interfaces;
 using NoviExchange.Domain.Models;
 
 namespace NoviExchange.Application;
