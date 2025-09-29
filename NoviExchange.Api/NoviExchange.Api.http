@@ -1,0 +1,6 @@
+@NoviExchange.Api_HostAddress = http://localhost:5081
+
+GET {{NoviExchange.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoviExchange.Api", "NoviExchange.Api\NoviExchange.Api.csproj", "{9A16E9FA-0AA0-46E5-81EC-D9D296BE27DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoviExchange.EcbClient", "NoviExchange.EcbClient\NoviExchange.EcbClient.csproj", "{EDEA4DD6-F768-4C05-8AF5-20C896959C81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoviExchange.Application", "NoviExchange.Application\NoviExchange.Application.csproj", "{FBF11FF4-5E44-473E-9514-E293E4BA057E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoviExchange.Infrastructure", "NoviExchange.Infrastructure\NoviExchange.Infrastructure.csproj", "{C1878FCE-C357-469E-80FA-DC1A3CFA8451}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoviExchange.Tests", "NoviExchange.Tests\NoviExchange.Tests.csproj", "{DEF0A11A-9BE0-4C9B-B61D-3EBE6C8EAAD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoviExchange.Domain", "NoviExchange.Domain\NoviExchange.Domain.csproj", "{D324EA56-3A19-4EB9-827C-2C00A2F9B6A1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9A16E9FA-0AA0-46E5-81EC-D9D296BE27DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A16E9FA-0AA0-46E5-81EC-D9D296BE27DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A16E9FA-0AA0-46E5-81EC-D9D296BE27DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A16E9FA-0AA0-46E5-81EC-D9D296BE27DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDEA4DD6-F768-4C05-8AF5-20C896959C81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDEA4DD6-F768-4C05-8AF5-20C896959C81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDEA4DD6-F768-4C05-8AF5-20C896959C81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDEA4DD6-F768-4C05-8AF5-20C896959C81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBF11FF4-5E44-473E-9514-E293E4BA057E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBF11FF4-5E44-473E-9514-E293E4BA057E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBF11FF4-5E44-473E-9514-E293E4BA057E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBF11FF4-5E44-473E-9514-E293E4BA057E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1878FCE-C357-469E-80FA-DC1A3CFA8451}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1878FCE-C357-469E-80FA-DC1A3CFA8451}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1878FCE-C357-469E-80FA-DC1A3CFA8451}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1878FCE-C357-469E-80FA-DC1A3CFA8451}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEF0A11A-9BE0-4C9B-B61D-3EBE6C8EAAD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEF0A11A-9BE0-4C9B-B61D-3EBE6C8EAAD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEF0A11A-9BE0-4C9B-B61D-3EBE6C8EAAD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEF0A11A-9BE0-4C9B-B61D-3EBE6C8EAAD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D324EA56-3A19-4EB9-827C-2C00A2F9B6A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D324EA56-3A19-4EB9-827C-2C00A2F9B6A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D324EA56-3A19-4EB9-827C-2C00A2F9B6A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D324EA56-3A19-4EB9-827C-2C00A2F9B6A1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
