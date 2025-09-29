@@ -74,10 +74,11 @@ namespace NoviExchange.Tests
             // Assert
             Assert.NotNull(result);
             var rates = result.ToList();
+            var expectedDate = new DateTime(2025, 09, 29);
 
-            Assert.Contains(rates, r => r.Currency == "EUR" && r.Rate == 1m);
-            Assert.Contains(rates, r => r.Currency == "USD" && r.Rate == 1.5m);
-            Assert.Contains(rates, r => r.Currency == "GBP" && r.Rate == 0.5m);
+            Assert.Contains(rates, r => r.Currency == "EUR" && r.Rate == 1m && r.Date == expectedDate);
+            Assert.Contains(rates, r => r.Currency == "USD" && r.Rate == 1.5m && r.Date == expectedDate);
+            Assert.Contains(rates, r => r.Currency == "GBP" && r.Rate == 0.5m && r.Date == expectedDate);
             Assert.Equal(3, rates.Count);
         }
 
@@ -91,7 +92,7 @@ namespace NoviExchange.Tests
         public async Task GetLatestRatesAsync_RetriesOnHttpRequestException()
         {
             // Arrange
-            var fakeXml = "<Cube><Cube currency='USD' rate='1.5'/></Cube>";
+            var fakeXml = "<Cube time='2025-09-29'><Cube currency='USD' rate='1.5'/></Cube>";
 
             int callCount = 0;
 
@@ -122,7 +123,9 @@ namespace NoviExchange.Tests
             var result = await client.GetLatestRatesAsync();
 
             // Assert
-            Assert.Contains(result, r => r.Currency == "USD" && r.Rate == 1.5m);
+            var expectedDate = new DateTime(2025, 09, 29);
+
+            Assert.Contains(result, r => r.Currency == "USD" && r.Rate == 1.5m && r.Date == expectedDate);
             Assert.Equal(3, callCount);
         }
     }

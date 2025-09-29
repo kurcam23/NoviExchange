@@ -28,15 +28,21 @@ public class EcbProvider : IEcbProvider
             var xmlString = await FetchEcbXmlWithRetryAsync();
             var doc = XDocument.Parse(xmlString);
 
-            var rates = new List<CurrencyRate> { new("EUR", 1m) };
+            var cubeNodes = doc.Descendants().Where(x => x.Name.LocalName == "Cube");
+            var CurrencyRateDate = ParseCubeRateDate(cubeNodes);
 
-            var ecbRates = doc.Descendants()
-                            .Where(x => x.Name.LocalName == "Cube")
-                            .Select(x => ParseCubeNode(x))
-                            .OfType<CurrencyRate>()
-                            .ToList();
+            var rates = new List<CurrencyRate> { new("EUR", 1m, CurrencyRateDate) };
 
-            rates.AddRange(ecbRates);
+            if (cubeNodes != null)
+            {
+                var ecbRates = cubeNodes
+                                .Elements()
+                                .Select(x => ParseCubeNode(x, CurrencyRateDate))
+                                .OfType<CurrencyRate>()
+                                .ToList();
+
+                rates.AddRange(ecbRates);
+            }
 
             return rates;
         }
@@ -77,7 +83,25 @@ public class EcbProvider : IEcbProvider
         return string.Empty;
     }
 
-    private CurrencyRate? ParseCubeNode(XElement element)
+    private DateTime ParseCubeRateDate(IEnumerable<XElement?> cubeNodes)
+    {
+        var cubeTimeNode = cubeNodes.FirstOrDefault(x => x?.Attribute("time") != null);
+        if (cubeTimeNode == null)
+        {
+            _logger.LogWarning("ECB XML did not contain a Cube node");
+            return DateTime.UtcNow.Date;
+        }
+
+        if (DateTime.TryParse(cubeTimeNode.Attribute("time")?.Value, out var date))
+        {
+            return date;
+        }
+
+        _logger.LogWarning("Invalid Cube time value in ECB XML");
+        return DateTime.UtcNow.Date;
+    }
+
+    private CurrencyRate? ParseCubeNode(XElement element, DateTime currencyRateDate)
     {
         var currencyAttr = element.Attribute("currency")?.Value;
         var rateAttr = element.Attribute("rate")?.Value;
@@ -94,6 +118,6 @@ public class EcbProvider : IEcbProvider
             return null;
         }
 
-        return new CurrencyRate(currencyAttr, rate);
+        return new CurrencyRate(currencyAttr, rate, currencyRateDate);
     }
 }
