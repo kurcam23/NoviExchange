@@ -5,7 +5,7 @@ namespace NoviExchange.Application.Interfaces.Repositories
 {
     public interface ICurrencyRateRepository
     {
-        Task<Dictionary<string, decimal>> GetCurrencyRates();
+        Task<Dictionary<string, decimal>> GetLatestCurrencyRates();
         Task UpsertRatesAsync(IEnumerable<CurrencyRateEntity> rates);
     }
 }

@@ -1,4 +1,5 @@
-﻿using NoviExchange.Application.Interfaces.Providers;
+﻿using AutoMapper;
+using NoviExchange.Application.Interfaces.Providers;
 using NoviExchange.Application.Interfaces.Repositories;
 using NoviExchange.Domain.Entities;
 using Quartz;
@@ -9,11 +10,13 @@ namespace NoviExchange.Application.Jobs
     {
         private readonly IEcbProvider _ecbProvider;
         private readonly ICurrencyRateRepository _currencyRateRepository;
+        private readonly IMapper _mapper;
 
-        public ExchangeRateUpdateJob(IEcbProvider ecbProvider, ICurrencyRateRepository repository)
+        public ExchangeRateUpdateJob(IEcbProvider ecbProvider, ICurrencyRateRepository repository, IMapper mapper)
         {
             _ecbProvider = ecbProvider;
-            _currencyRateRepository = repository;
+            _currencyRateRepository = repository; 
+            _mapper = mapper;
         }
 
         public async Task Execute(IJobExecutionContext context)
@@ -23,14 +26,8 @@ namespace NoviExchange.Application.Jobs
             if (!rates.Any()) 
                 return;
 
-            //TODO: add AutoMapper to implementation
-            var ratesEntities = rates.Select(r => new CurrencyRateEntity
-            {
-                FromCurrency = "EUR", //TODO: deal with this hardcoding
-                ToCurrency = r.Currency,
-                Rate = r.Rate,
-                Date = r.Date
-            }).ToList();
+            var ratesEntities = _mapper.Map<List<CurrencyRateEntity>>(rates);
+
 
             await _currencyRateRepository.UpsertRatesAsync(ratesEntities);
         }

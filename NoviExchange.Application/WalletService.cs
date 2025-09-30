@@ -44,7 +44,7 @@ namespace NoviExchange.Application
 
         private async Task<decimal> GetConvertedBalance(string toCurrency, string fromCurrency, decimal balance)
         {
-            var currencyRates = await _currencyRateRepository.GetCurrencyRates(); //TODO: make this into cache or get latest date only
+            var currencyRates = await _currencyRateRepository.GetLatestCurrencyRates(); //TODO: make this into cache
 
             if (!currencyRates.TryGetValue(fromCurrency, out var fromRate))
                 throw new KeyNotFoundException($"Currency rate for '{fromCurrency}' not found");

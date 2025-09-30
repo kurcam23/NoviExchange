@@ -13,7 +13,7 @@ namespace NoviExchange.Infrastructure.Repositories
             _context = dbContext;
         }
 
-        public async Task<Dictionary<string, decimal>> GetCurrencyRates()
+        public async Task<Dictionary<string, decimal>> GetLatestCurrencyRates()
         {
             return await _context.CurrencyRates
                 .GroupBy(r => r.ToCurrency)
