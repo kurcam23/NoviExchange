@@ -1,4 +1,5 @@
-﻿using NoviExchange.Application.Interfaces;
+﻿using NoviExchange.Application.Interfaces.Providers;
+using NoviExchange.Application.Interfaces.Repositories;
 using NoviExchange.Domain.Entities;
 using Quartz;
 
@@ -22,6 +23,7 @@ namespace NoviExchange.Application.Jobs
             if (!rates.Any()) 
                 return;
 
+            //TODO: add AutoMapper to implementation
             var ratesEntities = rates.Select(r => new CurrencyRateEntity
             {
                 FromCurrency = "EUR", //TODO: deal with this hardcoding

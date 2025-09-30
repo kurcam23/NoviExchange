@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using NoviExchange.Domain.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace NoviExchange.Domain.Entities
 {

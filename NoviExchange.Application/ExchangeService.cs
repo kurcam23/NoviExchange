@@ -1,4 +1,5 @@
-﻿using NoviExchange.Application.Interfaces;
+﻿using NoviExchange.Application.Interfaces.Providers;
+using NoviExchange.Application.Interfaces.Services;
 using NoviExchange.Domain.Models;
 
 namespace NoviExchange.Application;

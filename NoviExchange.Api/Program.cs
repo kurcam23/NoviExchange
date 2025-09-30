@@ -1,7 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using NoviExchange.Application;
-using NoviExchange.Application.Interfaces;
+using NoviExchange.Application.Factories;
+using NoviExchange.Application.Interfaces.Factories;
+using NoviExchange.Application.Interfaces.Providers;
+using NoviExchange.Application.Interfaces.Repositories;
+using NoviExchange.Application.Interfaces.Services;
 using NoviExchange.Application.Jobs;
+using NoviExchange.Application.Profiles;
 using NoviExchange.EcbClient;
 using NoviExchange.EcbClient.Options;
 using NoviExchange.Infrastructure;
@@ -20,10 +25,17 @@ builder.Services.Configure<EcbClientOptions>(builder.Configuration.GetSection("E
 
 builder.Services.AddHttpClient<IEcbProvider, EcbProvider>();
 
+builder.Services.AddScoped<IWalletAdjustmentStrategyFactory, WalletAdjustmentStrategyFactory>();
+
 builder.Services.AddScoped<IExchangeService, ExchangeService>();
+builder.Services.AddScoped<IWalletService, WalletService>();
+
 builder.Services.AddScoped<ICurrencyRateRepository, CurrencyRateRepository>();
+builder.Services.AddScoped<IWalletRepository, WalletRepository>();
 
 builder.Services.AddControllers();
+
+builder.Services.AddAutoMapper(typeof(WalletProfile));
 
 builder.Services.AddQuartz(q =>
 {

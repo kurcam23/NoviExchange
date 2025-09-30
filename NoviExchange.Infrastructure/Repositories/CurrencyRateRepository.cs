@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NoviExchange.Application.Interfaces;
+using NoviExchange.Application.Interfaces.Repositories;
 using NoviExchange.Domain.Entities;
 
 namespace NoviExchange.Infrastructure.Repositories
@@ -11,6 +11,14 @@ namespace NoviExchange.Infrastructure.Repositories
         public CurrencyRateRepository(NoviExchangeDbContext dbContext)
         {
             _context = dbContext;
+        }
+
+        public async Task<Dictionary<string, decimal>> GetCurrencyRates()
+        {
+            return await _context.CurrencyRates
+                .GroupBy(r => r.ToCurrency)
+                .Select(g => g.OrderByDescending(r => r.Date).First())
+                .ToDictionaryAsync(r => r.ToCurrency, r => r.Rate);
         }
 
         public async Task UpsertRatesAsync(IEnumerable<CurrencyRateEntity> rates)

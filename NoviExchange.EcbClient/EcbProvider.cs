@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using NoviExchange.Application.Interfaces;
+using NoviExchange.Application.Interfaces.Providers;
 using NoviExchange.Domain.Models;
 using NoviExchange.EcbClient.Options;
 using System.Globalization;

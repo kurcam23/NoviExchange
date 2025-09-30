@@ -1,6 +1,6 @@
 ﻿using NoviExchange.Domain.Models;
 
-namespace NoviExchange.Application.Interfaces
+namespace NoviExchange.Application.Interfaces.Services
 {
     public interface IExchangeService
     {
