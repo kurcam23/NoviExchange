@@ -5,7 +5,7 @@ using NoviExchange.Domain.Entities;
 using NoviExchange.Domain.Interfaces;
 using NoviExchange.Domain.Models;
 
-namespace NoviExchange.Application
+namespace NoviExchange.Application.Services
 {
     public class WalletService : IWalletService
     {
@@ -44,7 +44,7 @@ namespace NoviExchange.Application
 
         private async Task<decimal> GetConvertedBalance(string toCurrency, string fromCurrency, decimal balance)
         {
-            var currencyRates = await _currencyRateRepository.GetLatestCurrencyRates(); //TODO: make this into cache
+            var currencyRates = await _currencyRateRepository.GetLatestCurrencyRates();
 
             if (!currencyRates.TryGetValue(fromCurrency, out var fromRate))
                 throw new KeyNotFoundException($"Currency rate for '{fromCurrency}' not found");

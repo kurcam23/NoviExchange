@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Moq;
-using NoviExchange.Application;
 using NoviExchange.Application.Interfaces.Repositories;
+using NoviExchange.Application.Services;
 using NoviExchange.Domain.Entities;
 using NoviExchange.Domain.Models;
 
