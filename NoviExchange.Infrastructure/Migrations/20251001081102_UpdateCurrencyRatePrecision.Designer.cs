@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NoviExchange.Infrastructure;
 
@@ -11,9 +12,11 @@ using NoviExchange.Infrastructure;
 namespace NoviExchange.Infrastructure.Migrations
 {
     [DbContext(typeof(NoviExchangeDbContext))]
-    partial class NoviExchangeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251001081102_UpdateCurrencyRatePrecision")]
+    partial class UpdateCurrencyRatePrecision
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

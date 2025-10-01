@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NoviExchange.Domain.Entities
 {
@@ -13,6 +14,7 @@ namespace NoviExchange.Domain.Entities
         [StringLength(3)]
         public string ToCurrency { get; set; } = null!;
         [Required]
+        [Column(TypeName = "decimal(18, 6)")]
         public decimal Rate { get; set; }
         [Required]
         public DateTime Date { get; set; }
