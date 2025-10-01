@@ -54,7 +54,7 @@ NoviExchange is designed following **Domain-Driven Design (DDD)** principles to 
 - **Repository Pattern**: Provides an abstraction over data access using **Entity Framework Core**, allowing the domain layer to interact with data without knowing the underlying database details.
 - **Cache Decorator Pattern**: Optimizes performance by caching frequently accessed data (e.g., currency rates) using **Redis**, without polluting repository logic.
 - **Factory Pattern**: Encapsulates the creation of complex objects, ensuring that dependencies and configurations are applied consistently.
-- **Decorator Pattern**: Extends functionality of services or repositories without modifying their core behavior.
+- **Decorator Pattern**: Extends functionality of services or repositories without modifying their core behavior. This was implemented using **Autofac**, which provides support for automatic decorator registration and dependency injection.
 - **Dependency Injection (DI)**: Promotes loose coupling by allowing services and repositories to be injected where needed, improving testability and maintainability.
 
 ### Approaches
