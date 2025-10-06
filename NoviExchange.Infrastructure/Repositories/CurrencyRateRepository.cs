@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using NoviExchange.Application.Interfaces.Repositories;
 using NoviExchange.Domain.Entities;
 
@@ -25,13 +26,24 @@ namespace NoviExchange.Infrastructure.Repositories
         {
             if (!rates.Any()) return;
 
-            var valuesList = string.Join(", ",
-            rates.Select(r => $"('{r.FromCurrency}', '{r.ToCurrency}', {r.Rate}, '{r.Date:yyyy-MM-dd}')"));
+            var parameters = new List<SqlParameter>();
+            var valueClauses = new List<string>();
+            int i = 0;
+
+            foreach (var r in rates)
+            {
+                valueClauses.Add($"(@from{i}, @to{i}, @rate{i}, @date{i})");
+                parameters.Add(new SqlParameter($"@from{i}", r.FromCurrency));
+                parameters.Add(new SqlParameter($"@to{i}", r.ToCurrency));
+                parameters.Add(new SqlParameter($"@rate{i}", r.Rate));
+                parameters.Add(new SqlParameter($"@date{i}", r.Date));
+                i++;
+            }
 
             var mergeSql = $@"
                 MERGE INTO CurrencyRates AS target
                 USING (VALUES
-                    {valuesList}
+                    {string.Join(", ", valueClauses)}
                 ) AS source (FromCurrency, ToCurrency, Rate, RateDate)
                 ON target.FromCurrency = source.FromCurrency 
                    AND target.ToCurrency = source.ToCurrency 
@@ -45,7 +57,7 @@ namespace NoviExchange.Infrastructure.Repositories
             await using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
-                await _context.Database.ExecuteSqlRawAsync(mergeSql);
+                await _context.Database.ExecuteSqlRawAsync(mergeSql, parameters);
                 await transaction.CommitAsync();
             }
             catch (Exception ex)
